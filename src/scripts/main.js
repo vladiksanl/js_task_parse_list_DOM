@@ -4,16 +4,18 @@ const employees = document.querySelectorAll('li');
 const employeesOfArray = [...employees];
 const employeesList = document.querySelector('ul');
 
-sortList(employeesOfArray).forEach((li) => employeesList.append(li));
-
 function replacer(str) {
   return str.replace(/[$,]/g, '');
 }
 
 function sortList(list) {
-  return [...list].sort(
+  const sortedList = [...list].sort(
     (a, b) => +replacer(b.dataset.salary) - +replacer(a.dataset.salary),
   );
+
+  sortedList.forEach((li) => employeesList.append(li));
+
+  return sortedList;
 }
 
 function getEmployees(list) {
