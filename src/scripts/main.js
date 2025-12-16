@@ -2,12 +2,17 @@
 
 const employees = document.querySelectorAll('li');
 const employeesOfArray = [...employees];
+const employeesList = document.querySelector('ul');
+
+sortList(employeesOfArray).forEach((li) => employeesList.append(li));
+
+function replacer(str) {
+  return str.replace(/[$,]/g, '');
+}
 
 function sortList(list) {
   return [...list].sort(
-    (a, b) =>
-      +b.dataset.salary.replace(/[$,]/g, '') -
-      +a.dataset.salary.replace(/[$,]/g, ''),
+    (a, b) => +replacer(b.dataset.salary) - +replacer(a.dataset.salary),
   );
 }
 
